@@ -1,9 +1,0 @@
-{
-  "schema_version": 1,
-  "model": "adaface_ir50_webface4m",
-  "source_repository": "https://github.com/mk-minchul/AdaFace",
-  "source_file_id": "1BmDRrhPsHSbXcWZoYFPJg2KJn1sd3QpN",
-  "checkpoint_filename": "adaface_ir50_webface4m.ckpt",
-  "checkpoint_size": 596517267,
-  "checkpoint_sha256": "52cca7c64808fea6f44f9b9aee2b0e091bf96c1ab4f6e31bedcdf5d77009b4f8"
-}

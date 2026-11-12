@@ -1,10 +1,10 @@
 # release.sh supplies a local runtime reference pinned to its inspected image ID.
-ARG TRITON_RUNTIME_IMAGE=registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:26.04-py3-arm64-runtime
+ARG TRITON_RUNTIME_IMAGE=visionflow-inference:jetson-26.04
 FROM ${TRITON_RUNTIME_IMAGE}
 
 ARG RELEASE_VERSION
 ARG SOURCE_REVISION
-LABEL org.opencontainers.image.title="Camtells Triton for Jetson" \
+LABEL org.opencontainers.image.title="VisionFlow Inference for Jetson" \
       org.opencontainers.image.version="${RELEASE_VERSION}" \
       org.opencontainers.image.revision="${SOURCE_REVISION}"
 

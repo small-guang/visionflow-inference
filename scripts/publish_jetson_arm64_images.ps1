@@ -1,23 +1,31 @@
 [CmdletBinding()]
-param()
+param(
+    [Parameter(Mandatory = $true)]
+    [ValidatePattern('^[a-z0-9][a-z0-9._:/-]*[a-z0-9]$')]
+    [string]$TargetRegistry,
+    [Parameter(Mandatory = $true)]
+    [ValidateNotNullOrEmpty()]
+    [string]$TritonSource,
+    [Parameter(Mandatory = $true)]
+    [ValidatePattern('^sha256:[0-9a-f]{64}$')]
+    [string]$ExpectedTritonArm64Digest
+)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-$TritonSource = "nvcr.io/nvidia/tritonserver:26.04-py3"
 $PrometheusSource = "quay.io/prometheus/prometheus:v2.53.4"
 # DaoCloud is used only as a transport mirror because Docker Hub is not
 # reachable on some mainland networks. The official Docker Hub ARM64 digest
 # below prevents the mirror from silently serving different image content.
 $GrafanaSource = "docker.m.daocloud.io/grafana/grafana:11.6.0"
-$ExpectedTritonArm64Digest = "sha256:aa5fca20416939f243d587d56557d15f9d2bb81de30c6a4464707225250320fb"
 $ExpectedPrometheusArm64Digest = "sha256:d4aee9f05c4d8f294fe01de1a3d3db15ba01fa14c9c3cd19c3c0a2780118cba6"
 $ExpectedGrafanaArm64Digest = "sha256:c5bb8837eb70910907d8df3a11d0c489bd9e0f761cb67261e8d7d6af0724ddf3"
 
-$TritonBaseTarget = "registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:26.04-py3-arm64"
-$TritonRuntimeTarget = "registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:26.04-py3-arm64-runtime"
-$PrometheusTarget = "registry.cn-hangzhou.aliyuncs.com/eapil/prometheus:v2.53.4-arm64"
-$GrafanaTarget = "registry.cn-hangzhou.aliyuncs.com/eapil/grafana:11.6.0-arm64"
+$TritonBaseTarget = "${TargetRegistry}/tritonserver:26.04-py3-arm64"
+$TritonRuntimeTarget = "${TargetRegistry}/visionflow-inference:jetson-26.04"
+$PrometheusTarget = "${TargetRegistry}/prometheus:v2.53.4-arm64"
+$GrafanaTarget = "${TargetRegistry}/grafana:11.6.0-arm64"
 
 function Invoke-Docker {
     param(
@@ -208,6 +216,7 @@ try {
         "buildx", "build",
         "--platform", "linux/arm64",
         "--file", "Dockerfile.triton.jetson",
+        "--build-arg", "TRITON_BASE_IMAGE=$TritonBaseTarget",
         "--tag", $TritonRuntimeTarget,
         "--push",
         "."

@@ -1,6 +1,6 @@
 services:
 #  prometheus:
-#    image: registry.cn-hangzhou.aliyuncs.com/eapil/prometheus:v2.53.4-arm64
+#    image: quay.io/prometheus/prometheus:v2.53.4
 #    platform: linux/arm64
 #    ports:
 #      - "9090:9090"
@@ -9,7 +9,7 @@ services:
 #      - ./prometheus.jetson.yml:/etc/prometheus/prometheus.yml:ro
 #
 #  grafana:
-#    image: registry.cn-hangzhou.aliyuncs.com/eapil/grafana:11.6.0-arm64
+#    image: grafana/grafana:11.6.0
 #    platform: linux/arm64
 #    ports:
 #      - "3003:3000"
@@ -19,7 +19,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.triton.jetson
-    image: registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:26.04-py3-arm64-runtime
+      args:
+        TRITON_BASE_IMAGE: ${TRITON_BASE_IMAGE:?Set TRITON_BASE_IMAGE to a JetPack-compatible Triton image}
+    image: ${VISIONFLOW_INFERENCE_IMAGE:-visionflow-inference:jetson-26.04}
     platform: linux/arm64
     runtime: nvidia
     ipc: host

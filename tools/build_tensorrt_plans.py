@@ -25,9 +25,6 @@ FIXED_INPUTS = {
 }
 MODELS = (*YOLO_MODELS, *FIXED_INPUTS)
 CANDIDATE_FIXED_INPUTS = {**FIXED_INPUTS,
-    "adaface_ir50_webface4m_onnx": ("input", (3, 112, 112)),
-    "osnet_ain_x1_0_onnx": ("image", (3, 256, 128)),
-    "sixdrepnet_onnx": ("image", (3, 224, 224)),
 }
 PLAN_FILENAME = "model_throughput.plan"
 # FP16 exceeded quality-score / pixel-coordinate tolerances on RTX 3090 with

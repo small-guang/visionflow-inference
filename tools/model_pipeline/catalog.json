@@ -164,62 +164,6 @@
         "Original upstream ONNX and dynamically wrapped deployment ONNX are intentionally different byte identities."
       ]
     },
-    "adaface_ir50_webface4m": {
-      "filename": "adaface_ir50_webface4m.ckpt",
-      "local_path": "tools/models/adaface/adaface_ir50_webface4m.ckpt",
-      "sha256": "52cca7c64808fea6f44f9b9aee2b0e091bf96c1ab4f6e31bedcdf5d77009b4f8",
-      "size": 596517267,
-      "urls": [
-        "https://drive.google.com/uc?export=download&id=1BmDRrhPsHSbXcWZoYFPJg2KJn1sd3QpN"
-      ],
-      "identity": "AdaFace IR-50 (R50), WebFace4M official checkpoint.",
-      "homepage": "https://github.com/mk-minchul/AdaFace",
-      "revision": {
-        "code_commit": "d8114b3ca8c54cd81ef59ac34c19eda1c548ca17",
-        "drive_file_id": "1BmDRrhPsHSbXcWZoYFPJg2KJn1sd3QpN",
-        "weight_content_revision": null
-      },
-      "evidence_urls": [
-        "https://github.com/mk-minchul/AdaFace/blob/d8114b3ca8c54cd81ef59ac34c19eda1c548ca17/README.md#L123",
-        "https://drive.google.com/file/d/1BmDRrhPsHSbXcWZoYFPJg2KJn1sd3QpN/view?usp=sharing"
-      ],
-      "publisher_digest": null,
-      "notes": [
-        "The pinned official README maps R50/WebFace4M to the Drive file ID; it does not fix immutable file contents or an exact training commit.",
-        "Download identity is pinned by the catalog size and SHA256. No separate publisher checksum is recorded."
-      ]
-    },
-    "osnet_ain_x1_0_msmt17": {
-      "filename": "osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth",
-      "local_path": "tools/models/osnet/osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth",
-      "sha256": "8a07e8da38946f7cee37f4561617bf8b6d2fe8f3a4027852893ea092e46d919f",
-      "size": 17293009,
-      "urls": [
-        "https://huggingface.co/kaiyangzhou/osnet/resolve/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04/osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth"
-      ],
-      "identity": "OSNet-AIN x1.0 MSMT17, 256x128, amsgrad ep50 checkpoint; not the ImageNet pretraining file.",
-      "homepage": "https://huggingface.co/kaiyangzhou/osnet",
-      "revision": {
-        "weight_upload_commit": "01af85e82a9db4f3a4f6ed3a72ed9150bd416d04",
-        "weight_repo_head_observed": "a5c5cc037c24235cda3b21085b93ad77c9616224",
-        "architecture_commit": "f8cd150fdf77e8d9e1ed143b7f308c2c609ded50"
-      },
-      "evidence_urls": [
-        "https://github.com/KaiyangZhou/deep-person-reid/blob/f8cd150fdf77e8d9e1ed143b7f308c2c609ded50/README.rst#L33",
-        "https://huggingface.co/kaiyangzhou/osnet/commit/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04",
-        "https://huggingface.co/kaiyangzhou/osnet/raw/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04/osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth"
-      ],
-      "publisher_digest": {
-        "algorithm": "sha256",
-        "value": "8a07e8da38946f7cee37f4561617bf8b6d2fe8f3a4027852893ea092e46d919f",
-        "kind": "official author's HF repository Git LFS pointer oid in weight upload commit",
-        "evidence_url": "https://github.com/KaiyangZhou/deep-person-reid/blob/f8cd150fdf77e8d9e1ed143b7f308c2c609ded50/README.rst#L33"
-      },
-      "notes": [
-        "The official GitHub repository links the author's Hugging Face model repository.",
-        "Use the repository-native MSMT17 checkpoint, not the ImageNet pretraining file."
-      ]
-    },
     "lindevs_yolov8m_face": {
       "filename": "yolov8m-face-lindevs.pt",
       "local_path": "tools/models/yolo/yolov8m-face-lindevs.pt",
@@ -313,33 +257,6 @@
       },
       "notes": [
         "The release tag and code commit alone do not bind attachment bytes; verify the catalog size and SHA256."
-      ]
-    },
-    "sixdrepnet": {
-      "filename": "6DRepNet_300W_LP_AFLW2000.pth",
-      "local_path": "tools/models/6DRepNet/6DRepNet_300W_LP_AFLW2000.pth",
-      "sha256": "9bdcd0e072df0d21e92288b40ea1d1b3cf7173c44728ab9c45c4d673f361e018",
-      "size": 157315191,
-      "urls": [
-        "https://drive.google.com/uc?export=download&id=1vPNtVu_jg2oK-RiIWakxYyfLPA9rU4R4"
-      ],
-      "identity": "6DRepNet_300W_LP_AFLW2000.pth; RepVGG-B1g2-deploy checkpoint.",
-      "homepage": "https://github.com/thohemp/6DRepNet",
-      "revision": {
-        "code_commit": "464b2ba55c3d9b3d3b707c6271cf329a983ded20",
-        "drive_folder_id": "1V1pCV0BEW3mD-B9MogGrz_P91UhTtuE_",
-        "drive_file_id": "1vPNtVu_jg2oK-RiIWakxYyfLPA9rU4R4",
-        "weight_content_revision": null
-      },
-      "evidence_urls": [
-        "https://github.com/thohemp/6DRepNet/blob/464b2ba55c3d9b3d3b707c6271cf329a983ded20/README.MD#L95",
-        "https://drive.google.com/drive/folders/1V1pCV0BEW3mD-B9MogGrz_P91UhTtuE_?usp=sharing",
-        "https://drive.google.com/file/d/1vPNtVu_jg2oK-RiIWakxYyfLPA9rU4R4/view"
-      ],
-      "publisher_digest": null,
-      "notes": [
-        "The Drive file ID identifies the source; the catalog size and SHA256 fix the required bytes.",
-        "The BIWI checkpoint in the same folder has the same byte size; file name and SHA256 distinguish the AFLW2000 checkpoint."
       ]
     },
     "sbs_msmt17": {
@@ -618,100 +535,6 @@
       },
       "environment": "sbs",
       "plan_precision": "fp16"
-    },
-    "adaface_ir50_webface4m_onnx": {
-      "source": "adaface_ir50_webface4m",
-      "recipe": "adaface",
-      "aliases": [
-        "adaface"
-      ],
-      "native_plan": false,
-      "reference_onnx": "model_repository/adaface_ir50_webface4m_onnx/1/model.onnx",
-      "onnx_sha256": "997582d32d5936a8465f72db92ef16988ed3b60d53c2d3a184b15ed8dc43c554",
-      "onnx_size": 174396177,
-      "input_name": "input",
-      "input_shape": [
-        3,
-        112,
-        112
-      ],
-      "input_dtype": "FP32",
-      "output_names": [
-        "embedding"
-      ],
-      "output_shapes": [
-        [
-          512
-        ]
-      ],
-      "environment": "modern",
-      "export": {
-        "opset": 17,
-        "dynamic_batch": true
-      }
-    },
-    "osnet_ain_x1_0_onnx": {
-      "source": "osnet_ain_x1_0_msmt17",
-      "recipe": "osnet",
-      "aliases": [
-        "osnet"
-      ],
-      "native_plan": false,
-      "reference_onnx": "model_repository/osnet_ain_x1_0_onnx/1/model.onnx",
-      "onnx_sha256": "e766a2c3bdc0200ce20b9be0a05c784d4d81f342c3db40d8e054980b87d47c08",
-      "onnx_size": 8752792,
-      "input_name": "image",
-      "input_shape": [
-        3,
-        256,
-        128
-      ],
-      "input_dtype": "FP32",
-      "output_names": [
-        "embedding"
-      ],
-      "output_shapes": [
-        [
-          512
-        ]
-      ],
-      "environment": "modern",
-      "export": {
-        "opset": 17,
-        "dynamic_batch": true
-      }
-    },
-    "sixdrepnet_onnx": {
-      "source": "sixdrepnet",
-      "recipe": "sixdrepnet",
-      "aliases": [
-        "sixdrepnet"
-      ],
-      "native_plan": false,
-      "reference_onnx": "model_repository/sixdrepnet_onnx/1/model.onnx",
-      "onnx_sha256": "227302e83f95bc3a83c50d4fbab69ab9cea24beb2a936a10dc5521dce965ef30",
-      "onnx_size": 157322444,
-      "input_name": "image",
-      "input_shape": [
-        3,
-        224,
-        224
-      ],
-      "input_dtype": "FP32",
-      "output_names": [
-        "rotation_matrix"
-      ],
-      "output_shapes": [
-        [
-          3,
-          3
-        ]
-      ],
-      "environment": "modern",
-      "export": {
-        "opset": 17,
-        "dynamic_batch": true
-      }
     },
     "yolov8n_face_onnx": {
       "source": "lindevs_yolov8m_face",

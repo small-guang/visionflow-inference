@@ -1,4 +1,5 @@
-FROM registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:24.12-py3
+ARG TRITON_BASE_IMAGE=nvcr.io/nvidia/tritonserver:24.12-py3
+FROM ${TRITON_BASE_IMAGE}
 RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple \
     regex \
     ftfy \

@@ -1,9 +1,10 @@
-ARG TRITON_BASE_IMAGE=registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:26.04-py3-arm64
+ARG TRITON_BASE_IMAGE
 FROM ${TRITON_BASE_IMAGE}
 
 ENV TRITON_MODEL_CONFIG=orin_gpu
 
-# The default 26.04 ARM64 runtime uses CUDA 13. Override for CUDA 12 images.
+# Defaults below target CUDA 13 / TensorRT 10.16. Supply compatible overrides
+# when using a Jetson base image with a different software stack.
 ARG CUPY_PACKAGE=cupy-cuda13x==13.6.0
 # Match the TensorRT C++ libraries already installed in the ARM64 base image.
 # Override both packages for another TensorRT/CUDA version; keep --no-deps.

@@ -19,7 +19,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[2]
 DEPLOY = ROOT / "deploy" / "jetson"
-RUNTIME = "registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:26.04-py3-arm64-runtime"
+RUNTIME = "visionflow-inference:jetson-26.04"
 sys.path.insert(0, str(ROOT / "scripts"))
 import start_triton  # noqa: E402
 

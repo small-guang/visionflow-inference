@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
 
 #  prometheus:
-#    image: registry.cn-hangzhou.aliyuncs.com/eapil/prometheus
+#    image: quay.io/prometheus/prometheus:v2.53.4
 #    ports:
 #      - "9090:9090"
 #    restart: unless-stopped
@@ -11,7 +9,7 @@ services:
 #      - ./prometheus.yml:/etc/prometheus/prometheus.yml
 #
 #  grafana:
-#    image: registry.cn-hangzhou.aliyuncs.com/eapil/grafana
+#    image: grafana/grafana:11.6.0
 #    ports:
 #      - "3003:3000"
 #    restart: unless-stopped
@@ -20,7 +18,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.triton
-    image: camtellsvi-tritonserver:latest
+      args:
+        TRITON_BASE_IMAGE: ${TRITON_BASE_IMAGE:-nvcr.io/nvidia/tritonserver:24.12-py3}
+    image: ${VISIONFLOW_INFERENCE_IMAGE:-visionflow-inference:24.12}
     runtime: nvidia  
     ipc: host  
     volumes:

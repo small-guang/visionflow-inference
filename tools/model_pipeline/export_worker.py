@@ -45,17 +45,6 @@ def export_graph(spec, source, checkpoint, output):
             wrapper, example = impl.NormalizedTextEncoder(model).eval(), torch.zeros((1, 77), dtype=torch.long)
             example[0, :2] = torch.tensor([49406, 49407])
         impl.export_one(wrapper, example, output, spec['input_name'], spec['output_names'][0])
-    elif recipe in ('adaface', 'osnet', 'sixdrepnet'):
-        if recipe == 'adaface':
-            from tools import export_adaface_ir50_webface4m_onnx as impl
-            state = impl.load_checkpoint(checkpoint, source['size'], source['sha256'])
-        elif recipe == 'osnet':
-            from tools import export_osnet_ain_onnx as impl
-            state = impl.load_checkpoint(checkpoint, source['sha256'])
-        else:
-            from tools import export_6drepnet_onnx as impl
-            state = impl.load_checkpoint(checkpoint, source['size'], source['sha256'])
-        impl.export_release(impl.build_model(state), output)
     elif recipe == 'sbs':
         from tools import export_sbs_r50_ibn_onnx as impl
         classes = spec['export']['num_classes']
