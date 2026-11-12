@@ -1,0 +1,12 @@
+# Tested with Python 3.13.13, torch 2.12.1+cpu, and torchvision 0.27.1+cpu.
+# Install matching platform-specific PyTorch/torchvision first.
+setuptools==80.9.0
+numpy==2.5.0
+six==1.17.0
+pillow==12.2.0
+ftfy==6.3.1
+regex==2026.7.19
+tqdm==4.67.3
+onnx==1.22.0
+onnxruntime==1.28.0
+openai-clip==1.0.1

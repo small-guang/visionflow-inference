@@ -1,0 +1,8 @@
+**
+!Dockerfile.triton
+!Dockerfile.triton.jetson
+!scripts/
+!scripts/run_triton_with_rotating_logs.py
+!scripts/start_triton.py
+!profiles/
+!profiles/model_sets.json

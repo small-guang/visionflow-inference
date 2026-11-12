@@ -1,0 +1,15 @@
+FROM registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:24.12-py3
+RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple \
+    regex \
+    ftfy \
+    pillow \
+    numpy==1.26.4 \
+    opencv-python-headless==4.10.0.84 \
+    scikit-image==0.25.2 \
+    cupy-cuda12x==13.3.0
+COPY scripts/run_triton_with_rotating_logs.py /usr/local/bin/run_triton_with_rotating_logs.py
+COPY scripts/start_triton.py /usr/local/bin/start_triton.py
+COPY profiles/model_sets.json /opt/triton/model_sets.json
+RUN chmod +x /usr/local/bin/run_triton_with_rotating_logs.py \
+    /usr/local/bin/start_triton.py
+RUN mkdir -p /var/log/triton

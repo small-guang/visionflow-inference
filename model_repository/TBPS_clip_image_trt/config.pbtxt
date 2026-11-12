@@ -1,0 +1,28 @@
+name: "TBPS_clip_image_trt"
+backend: "tensorrt"
+max_batch_size: 4
+
+input {
+  name: "image"
+  data_type: TYPE_FP32
+  dims: [3, 224, 224]
+}
+
+output {
+  name: "image_feat"
+  data_type: TYPE_FP32
+  dims: [512]
+}
+
+instance_group {
+  name: "TBPS_clip_image_enc_onnx"
+  kind: KIND_GPU
+  count: 1
+  gpus: [0]
+}
+
+default_model_filename: "model_throughput.plan"
+
+dynamic_batching {
+  max_queue_delay_microseconds: 2000
+}

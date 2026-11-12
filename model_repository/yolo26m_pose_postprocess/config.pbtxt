@@ -1,0 +1,41 @@
+name: "yolo26m_pose_postprocess"
+backend: "python"
+max_batch_size: 4
+input [
+  {
+    name: "RAW_OUTPUT"
+    data_type: TYPE_FP32
+    dims: [ -1, 57 ]
+  },
+  {
+    name: "LETTERBOX_META"
+    data_type: TYPE_FP32
+    dims: [ 7 ]
+  }
+]
+output [
+  {
+    name: "DETECTIONS"
+    data_type: TYPE_FP32
+    dims: [ 100, 6 ]
+  },
+  {
+    name: "KEYPOINTS"
+    data_type: TYPE_FP32
+    dims: [ 100, 17, 3 ]
+  },
+  {
+    name: "NUM_DETECTIONS"
+    data_type: TYPE_INT32
+    dims: [ 1 ]
+  }
+]
+instance_group [
+  {
+    count: 1
+    kind: KIND_CPU
+  }
+]
+
+dynamic_batching {
+}

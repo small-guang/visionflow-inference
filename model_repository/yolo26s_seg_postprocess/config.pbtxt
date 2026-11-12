@@ -1,0 +1,46 @@
+name: "yolo26s_seg_postprocess"
+backend: "python"
+max_batch_size: 4
+input [
+  {
+    name: "RAW_OUTPUT"
+    data_type: TYPE_FP32
+    dims: [ -1, 38 ]
+  },
+  {
+    name: "MASK_PROTO"
+    data_type: TYPE_FP32
+    dims: [ 32, -1, -1 ]
+  },
+  {
+    name: "LETTERBOX_META"
+    data_type: TYPE_FP32
+    dims: [ 7 ]
+  }
+]
+output [
+  {
+    name: "DETECTIONS"
+    data_type: TYPE_FP32
+    dims: [ -1, 6 ]
+  },
+  {
+    name: "MASK_CROPS_PACKED"
+    data_type: TYPE_UINT8
+    dims: [ -1, 160, 20 ]
+  },
+  {
+    name: "NUM_DETECTIONS"
+    data_type: TYPE_INT32
+    dims: [ 1 ]
+  }
+]
+instance_group [
+  {
+    count: 1
+    kind: KIND_CPU
+  }
+]
+
+dynamic_batching {
+}

@@ -1,0 +1,953 @@
+{
+  "schema_version": 1,
+  "release": "current-2026-09-10",
+  "description": "Exact source identities and independent rebuild recipes. This catalog never activates a deployment.",
+  "sources": {
+    "openai_clip_vit_b16": {
+      "filename": "ViT-B-16.pt",
+      "local_path": "tools/models/clip/ViT-B-16.pt",
+      "sha256": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+      "size": 350837078,
+      "urls": [
+        "https://openaipublic.azureedge.net/clip/models/5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f/ViT-B-16.pt"
+      ],
+      "identity": "OpenAI CLIP ViT-B/16 base checkpoint shared by the two TBPS image/text encoders; not a TBPS-CLIP task-finetuned checkpoint.",
+      "homepage": "https://github.com/openai/CLIP",
+      "revision": {
+        "code_commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6",
+        "weight_binding": "SHA256 in official URL; clip.py explicitly validates URL parent path as SHA256"
+      },
+      "evidence_urls": [
+        "https://github.com/openai/CLIP/blob/d05afc436d78f1c48dc0dbf8e5980a9d471f35f6/clip/clip.py#L37"
+      ],
+      "publisher_digest": {
+        "algorithm": "sha256",
+        "value": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+        "kind": "publisher hard-coded content-addressed URL and SHA256 verification logic",
+        "evidence_url": "https://github.com/openai/CLIP/blob/d05afc436d78f1c48dc0dbf8e5980a9d471f35f6/clip/clip.py#L37"
+      },
+      "notes": [
+        "The current export tool hard-codes ViT-B-16.pt; the stored ViT-B-32.pt is outside this requested model identity.",
+        "Repository-documented TBPS preprocessing differs from OpenAI default; source identity does not validate task suitability."
+      ]
+    },
+    "chinese_clip_vit_b16": {
+      "filename": "clip_cn_vit-b-16.pt",
+      "local_path": "tools/models/chinese_clip/clip_cn_vit-b-16.pt",
+      "sha256": "5997ef32c50de18f3ac06eb5d746c324a639053c3bed8f2986f97ebb22b2ecde",
+      "size": 753196934,
+      "urls": [
+        "https://huggingface.co/OFA-Sys/chinese-clip-vit-base-patch16/resolve/36e679e65c2a2fead755ae21162091293ad37834/clip_cn_vit-b-16.pt"
+      ],
+      "identity": "Chinese-CLIP ViT-B/16 @ RoBERTa-wwm-ext-base-chinese, shared by the image and text encoders.",
+      "homepage": "https://github.com/OFA-Sys/Chinese-CLIP",
+      "revision": {
+        "weight_repo_commit": "36e679e65c2a2fead755ae21162091293ad37834",
+        "code_evidence_commit": "31863c707501bf1605d36842f43deb78793dbc5d"
+      },
+      "evidence_urls": [
+        "https://github.com/OFA-Sys/Chinese-CLIP/blob/31863c707501bf1605d36842f43deb78793dbc5d/cn_clip/clip/utils.py#L20",
+        "https://huggingface.co/OFA-Sys/chinese-clip-vit-base-patch16/raw/36e679e65c2a2fead755ae21162091293ad37834/clip_cn_vit-b-16.pt",
+        "https://huggingface.co/OFA-Sys/chinese-clip-vit-base-patch16/blob/36e679e65c2a2fead755ae21162091293ad37834/clip_cn_vit-b-16.pt"
+      ],
+      "publisher_digest": {
+        "algorithm": "sha256",
+        "value": "5997ef32c50de18f3ac06eb5d746c324a639053c3bed8f2986f97ebb22b2ecde",
+        "kind": "publisher-controlled HF repository Git LFS pointer oid",
+        "evidence_url": "https://github.com/OFA-Sys/Chinese-CLIP/blob/31863c707501bf1605d36842f43deb78793dbc5d/cn_clip/clip/utils.py#L20"
+      },
+      "notes": [
+        "HF Xet hash is a storage identifier and differs from the file SHA256; only the published SHA256/LFS oid is compared.",
+        "Do not replace this repository-native checkpoint with the neighboring transformers pytorch_model.bin."
+      ]
+    },
+    "insightface_w600k_r50": {
+      "filename": "w600k_r50.onnx",
+      "local_path": "tools/models/insightface/w600k_r50.onnx",
+      "sha256": "4c06341c33c2ca1f86781dab0e829f88ad5b64be9fba56e56bc9ebdefc619e43",
+      "size": 174383860,
+      "urls": [],
+      "identity": "InsightFace buffalo_l v0.7 member w600k_r50.onnx",
+      "homepage": "https://github.com/deepinsight/insightface",
+      "revision": {
+        "release_tag": "v0.7",
+        "release_id": 97756821,
+        "asset_id": 101975360,
+        "tag_commit": "3e6486942a1be2da0e5b475fac375ea73264bd21",
+        "release_immutable": false,
+        "asset_updated_at": "2023-04-02T07:43:08Z"
+      },
+      "evidence_urls": [
+        "https://api.github.com/repos/deepinsight/insightface/releases/tags/v0.7",
+        "https://api.github.com/repos/deepinsight/insightface/releases/assets/101975360",
+        "https://github.com/deepinsight/insightface/blob/3e6486942a1be2da0e5b475fac375ea73264bd21/model_zoo/README.md"
+      ],
+      "publisher_digest": null,
+      "notes": [
+        "GitHub release API asset.digest is null; source code/tag commit does not cryptographically bind release attachment bytes.",
+        "A numeric asset ID identifies a release object, not a permanent availability or signed checksum guarantee."
+      ],
+      "archive": {
+        "filename": "buffalo_l.zip",
+        "local_path": "tools/models/insightface/buffalo_l.zip",
+        "sha256": "80ffe37d8a5940d59a7384c201a2a38d4741f2f3c51eef46ebb28218a7b0ca2f",
+        "size": 288621354,
+        "member": "w600k_r50.onnx",
+        "urls": [
+          "https://github.com/deepinsight/insightface/releases/download/v0.7/buffalo_l.zip"
+        ]
+      }
+    },
+    "insightface_2d106det": {
+      "filename": "2d106det.onnx",
+      "local_path": "tools/models/insightface/2d106det.onnx",
+      "sha256": "f001b856447c413801ef5c42091ed0cd516fcd21f2d6b79635b1e733a7109dbf",
+      "size": 5030888,
+      "urls": [],
+      "identity": "InsightFace buffalo_l v0.7 member 2d106det.onnx",
+      "homepage": "https://github.com/deepinsight/insightface",
+      "revision": {
+        "release_tag": "v0.7",
+        "release_id": 97756821,
+        "asset_id": 101975360,
+        "tag_commit": "3e6486942a1be2da0e5b475fac375ea73264bd21",
+        "release_immutable": false,
+        "asset_updated_at": "2023-04-02T07:43:08Z"
+      },
+      "evidence_urls": [
+        "https://api.github.com/repos/deepinsight/insightface/releases/tags/v0.7",
+        "https://api.github.com/repos/deepinsight/insightface/releases/assets/101975360",
+        "https://github.com/deepinsight/insightface/blob/3e6486942a1be2da0e5b475fac375ea73264bd21/model_zoo/README.md"
+      ],
+      "publisher_digest": null,
+      "notes": [
+        "GitHub release API asset.digest is null; source code/tag commit does not cryptographically bind release attachment bytes.",
+        "A numeric asset ID identifies a release object, not a permanent availability or signed checksum guarantee."
+      ],
+      "archive": {
+        "filename": "buffalo_l.zip",
+        "local_path": "tools/models/insightface/buffalo_l.zip",
+        "sha256": "80ffe37d8a5940d59a7384c201a2a38d4741f2f3c51eef46ebb28218a7b0ca2f",
+        "size": 288621354,
+        "member": "2d106det.onnx",
+        "urls": [
+          "https://github.com/deepinsight/insightface/releases/download/v0.7/buffalo_l.zip"
+        ]
+      }
+    },
+    "modelscope_faceqa": {
+      "filename": "model.onnx",
+      "local_path": "tools/models/face_qa/model.onnx",
+      "sha256": "4d0e02b72f987989b5fe0447745521e16067b10777b66a1fb89362fb1ca08183",
+      "size": 406114,
+      "urls": [
+        "https://modelscope.cn/models/iic/cv_manual_face-quality-assessment_fqa/resolve/a695e4d7382b33661a79660e12e9dcc86a471a52/model.onnx"
+      ],
+      "identity": "ModelScope iic/cv_manual_face-quality-assessment_fqa original model.onnx.",
+      "homepage": "https://modelscope.cn/models/iic/cv_manual_face-quality-assessment_fqa",
+      "revision": {
+        "file_commit": "a695e4d7382b33661a79660e12e9dcc86a471a52",
+        "readme_commit": "406e90c8a01b65a0e442ba2af3e329736e416573"
+      },
+      "evidence_urls": [
+        "https://modelscope.cn/api/v1/models/iic/cv_manual_face-quality-assessment_fqa/repo/files?Revision=a695e4d7382b33661a79660e12e9dcc86a471a52&Recursive=true",
+        "https://modelscope.cn/models/iic/cv_manual_face-quality-assessment_fqa/resolve/a695e4d7382b33661a79660e12e9dcc86a471a52/model.onnx"
+      ],
+      "publisher_digest": {
+        "algorithm": "sha256",
+        "value": "4d0e02b72f987989b5fe0447745521e16067b10777b66a1fb89362fb1ca08183",
+        "kind": "publisher repository host API Files[].Sha256 at a pinned commit",
+        "evidence_url": "https://modelscope.cn/api/v1/models/iic/cv_manual_face-quality-assessment_fqa/repo/files?Revision=a695e4d7382b33661a79660e12e9dcc86a471a52&Recursive=true"
+      },
+      "notes": [
+        "Files[].Revision is the model.onnx file commit, not the newer README commit.",
+        "Original upstream ONNX and dynamically wrapped deployment ONNX are intentionally different byte identities."
+      ]
+    },
+    "adaface_ir50_webface4m": {
+      "filename": "adaface_ir50_webface4m.ckpt",
+      "local_path": "tools/models/adaface/adaface_ir50_webface4m.ckpt",
+      "sha256": "52cca7c64808fea6f44f9b9aee2b0e091bf96c1ab4f6e31bedcdf5d77009b4f8",
+      "size": 596517267,
+      "urls": [
+        "https://drive.google.com/uc?export=download&id=1BmDRrhPsHSbXcWZoYFPJg2KJn1sd3QpN"
+      ],
+      "identity": "AdaFace IR-50 (R50), WebFace4M official checkpoint.",
+      "homepage": "https://github.com/mk-minchul/AdaFace",
+      "revision": {
+        "code_commit": "d8114b3ca8c54cd81ef59ac34c19eda1c548ca17",
+        "drive_file_id": "1BmDRrhPsHSbXcWZoYFPJg2KJn1sd3QpN",
+        "weight_content_revision": null
+      },
+      "evidence_urls": [
+        "https://github.com/mk-minchul/AdaFace/blob/d8114b3ca8c54cd81ef59ac34c19eda1c548ca17/README.md#L123",
+        "https://drive.google.com/file/d/1BmDRrhPsHSbXcWZoYFPJg2KJn1sd3QpN/view?usp=sharing"
+      ],
+      "publisher_digest": null,
+      "notes": [
+        "The pinned official README maps R50/WebFace4M to the Drive file ID; it does not fix immutable file contents or an exact training commit.",
+        "Download identity is pinned by the catalog size and SHA256. No separate publisher checksum is recorded."
+      ]
+    },
+    "osnet_ain_x1_0_msmt17": {
+      "filename": "osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth",
+      "local_path": "tools/models/osnet/osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth",
+      "sha256": "8a07e8da38946f7cee37f4561617bf8b6d2fe8f3a4027852893ea092e46d919f",
+      "size": 17293009,
+      "urls": [
+        "https://huggingface.co/kaiyangzhou/osnet/resolve/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04/osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth"
+      ],
+      "identity": "OSNet-AIN x1.0 MSMT17, 256x128, amsgrad ep50 checkpoint; not the ImageNet pretraining file.",
+      "homepage": "https://huggingface.co/kaiyangzhou/osnet",
+      "revision": {
+        "weight_upload_commit": "01af85e82a9db4f3a4f6ed3a72ed9150bd416d04",
+        "weight_repo_head_observed": "a5c5cc037c24235cda3b21085b93ad77c9616224",
+        "architecture_commit": "f8cd150fdf77e8d9e1ed143b7f308c2c609ded50"
+      },
+      "evidence_urls": [
+        "https://github.com/KaiyangZhou/deep-person-reid/blob/f8cd150fdf77e8d9e1ed143b7f308c2c609ded50/README.rst#L33",
+        "https://huggingface.co/kaiyangzhou/osnet/commit/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04",
+        "https://huggingface.co/kaiyangzhou/osnet/raw/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04/osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth"
+      ],
+      "publisher_digest": {
+        "algorithm": "sha256",
+        "value": "8a07e8da38946f7cee37f4561617bf8b6d2fe8f3a4027852893ea092e46d919f",
+        "kind": "official author's HF repository Git LFS pointer oid in weight upload commit",
+        "evidence_url": "https://github.com/KaiyangZhou/deep-person-reid/blob/f8cd150fdf77e8d9e1ed143b7f308c2c609ded50/README.rst#L33"
+      },
+      "notes": [
+        "The official GitHub repository links the author's Hugging Face model repository.",
+        "Use the repository-native MSMT17 checkpoint, not the ImageNet pretraining file."
+      ]
+    },
+    "lindevs_yolov8m_face": {
+      "filename": "yolov8m-face-lindevs.pt",
+      "local_path": "tools/models/yolo/yolov8m-face-lindevs.pt",
+      "sha256": "303dcd997fb6ed446d1626b2bbd36f146894cdf600e33c4d563124f8c1b191c4",
+      "size": 52044689,
+      "urls": [
+        "https://github.com/lindevs/yolov8-face/releases/download/1.0.1/yolov8m-face-lindevs.pt"
+      ],
+      "identity": "lindevs YOLOv8m-Face; local Triton yolov8n name is a compatibility alias.",
+      "homepage": "https://github.com/lindevs/yolov8-face",
+      "revision": {
+        "release_tag": "1.0.1",
+        "release_id": 183088469,
+        "asset_id": 203365411,
+        "tag_commit": "c9c9570b01813a6cbc1fbfc75789bbd96d60c3af",
+        "head_observed": "c6a3deef371922dfc2f6e4f25a91e999e781c71d",
+        "release_immutable": false
+      },
+      "evidence_urls": [
+        "https://github.com/lindevs/yolov8-face/blob/c9c9570b01813a6cbc1fbfc75789bbd96d60c3af/README.md#L31",
+        "https://api.github.com/repos/lindevs/yolov8-face/releases/assets/203365411",
+        "https://github.com/lindevs/yolov8-face/releases/tag/1.0.1"
+      ],
+      "publisher_digest": {
+        "algorithm": "sha256",
+        "value": "303dcd997fb6ed446d1626b2bbd36f146894cdf600e33c4d563124f8c1b191c4",
+        "kind": "publisher README table at fixed Git commit; PT digest, not adjacent ONNX digest",
+        "evidence_url": "https://github.com/lindevs/yolov8-face/blob/c9c9570b01813a6cbc1fbfc75789bbd96d60c3af/README.md#L31"
+      },
+      "notes": [
+        "Release attachment identity is pinned by size and SHA256 as well as the release tag."
+      ]
+    },
+    "ultralytics_yolo26m_pose": {
+      "filename": "yolo26m-pose.pt",
+      "local_path": "tools/models/yolo/yolo26m-pose.pt",
+      "sha256": "2fbf16367022256a226035695c5c389384c6706e8bb8ab8fcd0e7976f05443c4",
+      "size": 49036866,
+      "urls": [
+        "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-pose.pt"
+      ],
+      "identity": "Ultralytics YOLO26m-Pose.",
+      "homepage": "https://github.com/ultralytics/assets/releases/tag/v8.4.0",
+      "revision": {
+        "release_tag": "v8.4.0",
+        "release_id": 276461319,
+        "asset_id": 340278663,
+        "tag_commit": "dcececebff9fe00420c144baa5cd25a641d10aa6",
+        "release_immutable": false
+      },
+      "evidence_urls": [
+        "https://api.github.com/repos/ultralytics/assets/releases/tags/v8.4.0",
+        "https://api.github.com/repos/ultralytics/assets/releases/assets/340278663"
+      ],
+      "publisher_digest": {
+        "algorithm": "sha256",
+        "value": "2fbf16367022256a226035695c5c389384c6706e8bb8ab8fcd0e7976f05443c4",
+        "kind": "official GitHub release assets[].digest field (hosting-platform published asset checksum)",
+        "evidence_url": "https://api.github.com/repos/ultralytics/assets/releases/tags/v8.4.0"
+      },
+      "notes": [
+        "The release tag and code commit alone do not bind attachment bytes; verify the catalog size and SHA256."
+      ]
+    },
+    "ultralytics_yolo26m_seg": {
+      "filename": "yolo26m-seg.pt",
+      "local_path": "tools/models/yolo/yolo26m-seg.pt",
+      "sha256": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+      "size": 54750385,
+      "urls": [
+        "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-seg.pt"
+      ],
+      "identity": "Ultralytics YOLO26m-Seg; local Triton yolo26s_seg name is a compatibility alias.",
+      "homepage": "https://github.com/ultralytics/assets/releases/tag/v8.4.0",
+      "revision": {
+        "release_tag": "v8.4.0",
+        "release_id": 276461319,
+        "asset_id": 340096318,
+        "tag_commit": "dcececebff9fe00420c144baa5cd25a641d10aa6",
+        "release_immutable": false
+      },
+      "evidence_urls": [
+        "https://api.github.com/repos/ultralytics/assets/releases/tags/v8.4.0",
+        "https://api.github.com/repos/ultralytics/assets/releases/assets/340096318"
+      ],
+      "publisher_digest": {
+        "algorithm": "sha256",
+        "value": "16b636f04e8fb6a325b3370f22dc5e5535ff473e384f4d041fd28d788f6ee9f5",
+        "kind": "official GitHub release assets[].digest field (hosting-platform published asset checksum)",
+        "evidence_url": "https://api.github.com/repos/ultralytics/assets/releases/tags/v8.4.0"
+      },
+      "notes": [
+        "The release tag and code commit alone do not bind attachment bytes; verify the catalog size and SHA256."
+      ]
+    },
+    "sixdrepnet": {
+      "filename": "6DRepNet_300W_LP_AFLW2000.pth",
+      "local_path": "tools/models/6DRepNet/6DRepNet_300W_LP_AFLW2000.pth",
+      "sha256": "9bdcd0e072df0d21e92288b40ea1d1b3cf7173c44728ab9c45c4d673f361e018",
+      "size": 157315191,
+      "urls": [
+        "https://drive.google.com/uc?export=download&id=1vPNtVu_jg2oK-RiIWakxYyfLPA9rU4R4"
+      ],
+      "identity": "6DRepNet_300W_LP_AFLW2000.pth; RepVGG-B1g2-deploy checkpoint.",
+      "homepage": "https://github.com/thohemp/6DRepNet",
+      "revision": {
+        "code_commit": "464b2ba55c3d9b3d3b707c6271cf329a983ded20",
+        "drive_folder_id": "1V1pCV0BEW3mD-B9MogGrz_P91UhTtuE_",
+        "drive_file_id": "1vPNtVu_jg2oK-RiIWakxYyfLPA9rU4R4",
+        "weight_content_revision": null
+      },
+      "evidence_urls": [
+        "https://github.com/thohemp/6DRepNet/blob/464b2ba55c3d9b3d3b707c6271cf329a983ded20/README.MD#L95",
+        "https://drive.google.com/drive/folders/1V1pCV0BEW3mD-B9MogGrz_P91UhTtuE_?usp=sharing",
+        "https://drive.google.com/file/d/1vPNtVu_jg2oK-RiIWakxYyfLPA9rU4R4/view"
+      ],
+      "publisher_digest": null,
+      "notes": [
+        "The Drive file ID identifies the source; the catalog size and SHA256 fix the required bytes.",
+        "The BIWI checkpoint in the same folder has the same byte size; file name and SHA256 distinguish the AFLW2000 checkpoint."
+      ]
+    },
+    "sbs_msmt17": {
+      "filename": "msmt_sbs_R50-ibn.pth",
+      "local_path": "tools/models/sbs_r50_ibn/msmt_sbs_R50-ibn.pth",
+      "sha256": "4e10cfb5dc667df0ff448838df6f9b56c9d10a95b5349bb9afebaf241a16de4a",
+      "size": 308505499,
+      "urls": [
+        "https://github.com/JDAI-CV/fast-reid/releases/download/v0.1.1/msmt_sbs_R50-ibn.pth"
+      ],
+      "identity": "FastReID SBS R50-IBN trained on MSMT17",
+      "homepage": "https://github.com/JDAI-CV/fast-reid",
+      "revision": {
+        "release_tag": "v0.1.1",
+        "asset_id": 23444294,
+        "config_reference": "977aa4a357e89d962224d6ab167c414a47826808"
+      },
+      "evidence_urls": [
+        "https://github.com/JDAI-CV/fast-reid/blob/977aa4a357e89d962224d6ab167c414a47826808/MODEL_ZOO.md#L141",
+        "https://github.com/JDAI-CV/fast-reid/blob/977aa4a357e89d962224d6ab167c414a47826808/configs/MSMT17/sbs_R50-ibn.yml",
+        "https://api.github.com/repos/JDAI-CV/fast-reid/releases/assets/23444294"
+      ],
+      "publisher_digest": null,
+      "notes": [
+        "The fixed code/config reference identifies the MSMT17 SBS R50-IBN configuration, not the exact training-run commit."
+      ]
+    }
+  },
+  "models": {
+    "clip_image_trt": {
+      "source": "chinese_clip_vit_b16",
+      "recipe": "chinese_clip_image",
+      "aliases": [
+        "clip_image"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/clip_image_trt/1/model.onnx",
+      "onnx_sha256": "10ca7abc0ef046a19ff2f670a8e3e278d02939c305c340b530ee23136e94cd5b",
+      "onnx_size": 345198918,
+      "input_name": "image",
+      "input_shape": [
+        3,
+        224,
+        224
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "unnorm_image_features"
+      ],
+      "output_shapes": [
+        [
+          512
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      },
+      "plan_precision": "fp16"
+    },
+    "clip_text_trt": {
+      "source": "chinese_clip_vit_b16",
+      "recipe": "chinese_clip_text",
+      "aliases": [
+        "clip_text"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/clip_text_trt/1/model.onnx",
+      "onnx_sha256": "cfcc0be7a2a39577ef62cdcd0f1eebffa992975d549bf1bac9c706dfe3140c0c",
+      "onnx_size": 408501331,
+      "input_name": "text",
+      "input_shape": [
+        52
+      ],
+      "input_dtype": "INT64",
+      "output_names": [
+        "unnorm_text_features"
+      ],
+      "output_shapes": [
+        [
+          512
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      },
+      "plan_precision": "fp16"
+    },
+    "TBPS_clip_image_trt": {
+      "source": "openai_clip_vit_b16",
+      "recipe": "openai_clip_image",
+      "aliases": [
+        "tbps_clip_image"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/TBPS_clip_image_trt/1/model.onnx",
+      "onnx_sha256": "ed5c71dde43ca0b749ba7a13690d8297d2cae19945d484789b88f855a202c14e",
+      "onnx_size": 345199066,
+      "input_name": "image",
+      "input_shape": [
+        3,
+        224,
+        224
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "image_feat"
+      ],
+      "output_shapes": [
+        [
+          512
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      },
+      "plan_precision": "fp16"
+    },
+    "TBPS_clip_text_trt": {
+      "source": "openai_clip_vit_b16",
+      "recipe": "openai_clip_text",
+      "aliases": [
+        "tbps_clip_text"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/TBPS_clip_text_trt/1/model.onnx",
+      "onnx_sha256": "4ff52ecb9371c8df795b5d0ffb2211c8c993234a5b5549ac68b6495161b4bede",
+      "onnx_size": 254389818,
+      "input_name": "text",
+      "input_shape": [
+        77
+      ],
+      "input_dtype": "INT64",
+      "output_names": [
+        "text_feat"
+      ],
+      "output_shapes": [
+        [
+          512
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      },
+      "plan_precision": "fp16"
+    },
+    "w600k_r50_trt": {
+      "source": "insightface_w600k_r50",
+      "recipe": "dynamic_onnx",
+      "aliases": [
+        "face_recognition"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/w600k_r50_trt/1/model.onnx",
+      "onnx_sha256": "6afbf406aa229a439abbca7436cc42be254d4e3af6200d8b7ae4c1fec0c18f2f",
+      "onnx_size": 174383866,
+      "input_name": "input.1",
+      "input_shape": [
+        3,
+        112,
+        112
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "683"
+      ],
+      "output_shapes": [
+        [
+          512
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      },
+      "plan_precision": "fp16"
+    },
+    "face_keypoint_2d106": {
+      "source": "insightface_2d106det",
+      "recipe": "dynamic_onnx",
+      "aliases": [],
+      "native_plan": true,
+      "reference_onnx": "model_repository/face_keypoint_2d106/1/model.onnx",
+      "onnx_sha256": "5fa42c140a64948c1108fc288d07d22f994b1e53b86a90b7b5e13295e29efc96",
+      "onnx_size": 5030894,
+      "input_name": "data",
+      "input_shape": [
+        3,
+        192,
+        192
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "fc1"
+      ],
+      "output_shapes": [
+        [
+          212
+        ]
+      ],
+      "input_range": "0_255",
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      },
+      "plan_precision": "fp32"
+    },
+    "face_qa": {
+      "source": "modelscope_faceqa",
+      "recipe": "dynamic_onnx",
+      "aliases": [],
+      "native_plan": true,
+      "reference_onnx": "model_repository/face_qa/1/model.onnx",
+      "onnx_sha256": "05a4ccd4f2a41da88447916c594cd55c53bc9ad5a2c1e19a1d65d23abbc5af29",
+      "onnx_size": 406124,
+      "input_name": "input",
+      "input_shape": [
+        3,
+        112,
+        112
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "quality"
+      ],
+      "output_shapes": [
+        [
+          10
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      },
+      "plan_precision": "fp32"
+    },
+    "sbs_r50_ibn_onnx": {
+      "source": "sbs_msmt17",
+      "recipe": "sbs",
+      "aliases": [
+        "sbs"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/sbs_r50_ibn_onnx/1/model.onnx",
+      "onnx_sha256": "c582b673fc70bf0643d993bc8df0cb053ef8a952acb3eb9ac9710d00204a411f",
+      "onnx_size": 94143572,
+      "input_name": "image",
+      "input_shape": [
+        3,
+        384,
+        128
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "embedding"
+      ],
+      "output_shapes": [
+        [
+          2048
+        ]
+      ],
+      "export": {
+        "opset": 17,
+        "num_classes": 1041,
+        "normalized": true
+      },
+      "environment": "sbs",
+      "plan_precision": "fp16"
+    },
+    "adaface_ir50_webface4m_onnx": {
+      "source": "adaface_ir50_webface4m",
+      "recipe": "adaface",
+      "aliases": [
+        "adaface"
+      ],
+      "native_plan": false,
+      "reference_onnx": "model_repository/adaface_ir50_webface4m_onnx/1/model.onnx",
+      "onnx_sha256": "997582d32d5936a8465f72db92ef16988ed3b60d53c2d3a184b15ed8dc43c554",
+      "onnx_size": 174396177,
+      "input_name": "input",
+      "input_shape": [
+        3,
+        112,
+        112
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "embedding"
+      ],
+      "output_shapes": [
+        [
+          512
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      }
+    },
+    "osnet_ain_x1_0_onnx": {
+      "source": "osnet_ain_x1_0_msmt17",
+      "recipe": "osnet",
+      "aliases": [
+        "osnet"
+      ],
+      "native_plan": false,
+      "reference_onnx": "model_repository/osnet_ain_x1_0_onnx/1/model.onnx",
+      "onnx_sha256": "e766a2c3bdc0200ce20b9be0a05c784d4d81f342c3db40d8e054980b87d47c08",
+      "onnx_size": 8752792,
+      "input_name": "image",
+      "input_shape": [
+        3,
+        256,
+        128
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "embedding"
+      ],
+      "output_shapes": [
+        [
+          512
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      }
+    },
+    "sixdrepnet_onnx": {
+      "source": "sixdrepnet",
+      "recipe": "sixdrepnet",
+      "aliases": [
+        "sixdrepnet"
+      ],
+      "native_plan": false,
+      "reference_onnx": "model_repository/sixdrepnet_onnx/1/model.onnx",
+      "onnx_sha256": "227302e83f95bc3a83c50d4fbab69ab9cea24beb2a936a10dc5521dce965ef30",
+      "onnx_size": 157322444,
+      "input_name": "image",
+      "input_shape": [
+        3,
+        224,
+        224
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "rotation_matrix"
+      ],
+      "output_shapes": [
+        [
+          3,
+          3
+        ]
+      ],
+      "environment": "modern",
+      "export": {
+        "opset": 17,
+        "dynamic_batch": true
+      }
+    },
+    "yolov8n_face_onnx": {
+      "source": "lindevs_yolov8m_face",
+      "recipe": "yolo",
+      "aliases": [
+        "yolov8n_face"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/yolov8n_face_onnx/1/model.onnx",
+      "onnx_sha256": "2d19f28673fe47398ab195d64b8a1e8ad8f47562c6cffd99745f61606c613fd1",
+      "onnx_size": 103440675,
+      "input_name": "images",
+      "input_shape": [
+        3,
+        384,
+        640
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "output0"
+      ],
+      "output_shapes": [
+        [
+          5,
+          "anchors"
+        ]
+      ],
+      "export": {
+        "opset": 12,
+        "imgsz": 640,
+        "dynamic": true,
+        "simplify": false,
+        "ultralytics": "8.4.61"
+      },
+      "parity_atol": 0.002,
+      "parity_rtol": 0.0001,
+      "spatial_buckets": [
+        [
+          192,
+          640
+        ],
+        [
+          384,
+          640
+        ],
+        [
+          480,
+          640
+        ],
+        [
+          640,
+          192
+        ],
+        [
+          640,
+          384
+        ],
+        [
+          640,
+          480
+        ],
+        [
+          640,
+          640
+        ]
+      ],
+      "environment": "modern",
+      "plan_precision": "fp16"
+    },
+    "yolo26m_pose_onnx": {
+      "source": "ultralytics_yolo26m_pose",
+      "recipe": "yolo",
+      "aliases": [
+        "yolo26m_pose"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/yolo26m_pose_onnx/1/model.onnx",
+      "onnx_sha256": "499c4fec75e3112dc5a548a71756950e6c06810bc08c343bc80a0f3e71d63ee2",
+      "onnx_size": 86288827,
+      "input_name": "images",
+      "input_shape": [
+        3,
+        384,
+        640
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "output0"
+      ],
+      "output_shapes": [
+        [
+          "anchors",
+          57
+        ]
+      ],
+      "export": {
+        "opset": 12,
+        "imgsz": 640,
+        "dynamic": true,
+        "simplify": false,
+        "ultralytics": "8.4.61"
+      },
+      "parity_atol": 0.002,
+      "parity_rtol": 0.0001,
+      "spatial_buckets": [
+        [
+          192,
+          640
+        ],
+        [
+          384,
+          640
+        ],
+        [
+          480,
+          640
+        ],
+        [
+          640,
+          192
+        ],
+        [
+          640,
+          384
+        ],
+        [
+          640,
+          480
+        ],
+        [
+          640,
+          640
+        ]
+      ],
+      "environment": "modern",
+      "plan_precision": "fp16"
+    },
+    "yolo26s_seg_onnx": {
+      "source": "ultralytics_yolo26m_seg",
+      "recipe": "yolo",
+      "aliases": [
+        "yolo26s_seg"
+      ],
+      "native_plan": true,
+      "reference_onnx": "model_repository/yolo26s_seg_onnx/1/model.onnx",
+      "onnx_sha256": "3e0543703f7e2d94e658fcb451ec4d90fd915a78321bea9b87051c2199aeecdb",
+      "onnx_size": 94420485,
+      "input_name": "images",
+      "input_shape": [
+        3,
+        384,
+        640
+      ],
+      "input_dtype": "FP32",
+      "output_names": [
+        "output0",
+        "output1"
+      ],
+      "output_shapes": [
+        [
+          "anchors",
+          38
+        ],
+        [
+          32,
+          "mask_h",
+          "mask_w"
+        ]
+      ],
+      "export": {
+        "opset": 12,
+        "imgsz": 640,
+        "dynamic": true,
+        "simplify": false,
+        "ultralytics": "8.4.61"
+      },
+      "parity_atol": 0.002,
+      "parity_rtol": 0.0001,
+      "spatial_buckets": [
+        [
+          192,
+          640
+        ],
+        [
+          384,
+          640
+        ],
+        [
+          480,
+          640
+        ],
+        [
+          640,
+          192
+        ],
+        [
+          640,
+          384
+        ],
+        [
+          640,
+          480
+        ],
+        [
+          640,
+          640
+        ]
+      ],
+      "environment": "modern",
+      "plan_precision": "fp16"
+    }
+  },
+  "environments": {
+    "modern": {
+      "python": "3.13.13",
+      "requirements": [
+        "tools/model_pipeline/requirements-modern.txt",
+        "tools/requirements-cn-clip-export.txt"
+      ],
+      "torch": "2.12.1",
+      "torchvision": "0.27.1",
+      "ultralytics": "8.4.61",
+      "windows_offline_lock": "tools/model_pipeline/requirements-modern-win.lock"
+    },
+    "sbs": {
+      "python": "3.10.11",
+      "requirements": [
+        "tools/requirements-sbs-export.txt"
+      ],
+      "windows_offline_lock": "tools/model_pipeline/requirements-sbs-win.lock"
+    },
+    "plan": {
+      "reference_tensorrt": "10.7.0",
+      "reference_gpu": "NVIDIA GeForce RTX 3090",
+      "reference_platform": "Linux x86_64",
+      "portability": "Rebuild on deployment target, including Jetson/JetPack runtime. Batch8 is a candidate, not an activated profile."
+    }
+  }
+}

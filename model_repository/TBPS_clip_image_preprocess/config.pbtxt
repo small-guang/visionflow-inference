@@ -1,0 +1,24 @@
+name: "TBPS_clip_image_preprocess"
+backend: "python"
+max_batch_size: 4
+
+input {
+  name: "IMAGE_BYTES"
+  data_type: TYPE_STRING
+  dims: [1]
+}
+
+output {
+  name: "image"
+  data_type: TYPE_FP32
+  dims: [3, 224, 224]
+}
+
+instance_group {
+  name: "TBPS_clip_image_preprocess"
+  kind: KIND_CPU
+  count: 1
+}
+
+dynamic_batching {
+}

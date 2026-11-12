@@ -1,0 +1,54 @@
+name: "clip_ensemble_trt"
+platform: "ensemble"
+max_batch_size: 4
+parameters: {
+  key: "api_contract_version"
+  value: {
+    string_value: "1"
+  }
+}
+
+input [
+  {
+    name: "IMAGE_BYTES"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+
+output [
+  {
+    name: "unnorm_image_features"
+    data_type: TYPE_FP32
+    dims: [ 512 ]
+  }
+]
+
+ensemble_scheduling {
+  step [
+    {
+      model_name: "clip_image_preprocess"
+      model_version: -1
+      input_map {
+        key: "IMAGE_BYTES"
+        value: "IMAGE_BYTES"
+      }
+      output_map {
+        key: "image"
+        value: "preprocessed_tensor"
+      }
+    },
+    {
+      model_name: "clip_image_trt"
+      model_version: -1
+      input_map {
+        key: "image"
+        value: "preprocessed_tensor"
+      }
+      output_map {
+        key: "unnorm_image_features"
+        value: "unnorm_image_features"
+      }
+    }
+  ]
+}

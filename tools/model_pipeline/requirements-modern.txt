@@ -1,0 +1,17 @@
+# Python 3.13.13, CPU ONNX export. SBS has a separate Python 3.10 environment.
+# TensorRT plans use the target device's SDK, independently of this export environment.
+torch==2.12.1
+torchvision==0.27.1
+numpy==2.5.0
+onnx==1.22.0
+onnxruntime==1.28.0
+ultralytics==8.4.61
+# Install cn-clip separately with --no-deps (its training-only lmdb pin lacks Py3.13 wheels).
+openai-clip==1.0.1
+setuptools==80.9.0
+six==1.17.0
+pillow==12.2.0
+ftfy==6.3.1
+wcwidth==0.2.13
+regex==2026.7.19
+tqdm==4.67.3

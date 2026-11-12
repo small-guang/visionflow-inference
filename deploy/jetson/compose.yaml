@@ -1,0 +1,31 @@
+services:
+  triton-server:
+    image: ${TRITON_IMAGE:?请在 .env 中设置已发布的 TRITON_IMAGE}
+    platform: linux/arm64
+    runtime: nvidia
+    ipc: host
+    ports:
+      - "${TRITON_BIND_ADDRESS:-0.0.0.0}:${TRITON_HTTP_PORT:-8000}:8000"
+      - "${TRITON_BIND_ADDRESS:-0.0.0.0}:${TRITON_GRPC_PORT:-8001}:8001"
+      - "${TRITON_BIND_ADDRESS:-0.0.0.0}:${TRITON_METRICS_PORT:-8003}:8002"
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+      TZ: ${TZ:-Asia/Shanghai}
+      TRITON_MODEL_SET: ${TRITON_MODEL_SET-all}
+      TRITON_MODEL_CONFIG: ${TRITON_MODEL_CONFIG-orin_gpu}
+      TRITON_LOG_FILE: /var/log/triton/server.log
+      TRITON_LOG_MAX_SIZE: ${TRITON_LOG_MAX_SIZE:-100M}
+      TRITON_LOG_BACKUP_COUNT: ${TRITON_LOG_BACKUP_COUNT:-5}
+    volumes:
+      - triton-logs:/var/log/triton
+    restart: unless-stopped
+    stop_grace_period: 60s
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "5"
+
+volumes:
+  triton-logs:

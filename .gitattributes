@@ -1,0 +1,2 @@
+.gitattributes text eol=lf
+tools/model_pipeline/catalog.json text eol=lf

@@ -1,0 +1,10 @@
+# Selected only by TRITON_MODEL_CONFIG=orin_gpu on Jetson AGX Orin.
+name: "TBPS_clip_image_ensemble"
+backend: "python"
+max_batch_size: 4
+parameters { key: "api_contract_version" value { string_value: "2" } }
+parameters { key: "FORCE_CPU_ONLY_INPUT_TENSORS" value { string_value: "yes" } }
+input [ { name: "IMAGE_BYTES" data_type: TYPE_STRING dims: [1] } ]
+output [ { name: "image_feat" data_type: TYPE_FP32 dims: [512] } ]
+instance_group [ { count: 1 kind: KIND_GPU } ]
+dynamic_batching { max_queue_delay_microseconds: 2000 }

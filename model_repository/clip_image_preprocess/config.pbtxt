@@ -1,0 +1,29 @@
+name: "clip_image_preprocess"
+backend: "python"
+max_batch_size: 4
+
+input [
+  {
+    name: "IMAGE_BYTES"
+    data_type: TYPE_STRING # 使用 STRING 来接收原始字节流
+    dims: [ 1 ] # 每个样本包含一个原始字节串
+  }
+]
+
+output [
+  {
+    name: "image" # 输出名称，将作为 ONNX 模型的输入
+    data_type: TYPE_FP32
+    dims: [ 3, 224, 224 ] # Triton dims 只描述单样本 CHW
+  }
+]
+
+instance_group [
+  {
+    kind: KIND_CPU # 预处理通常在 CPU 上足够快，也可以设为 KIND_GPU
+    count: 2
+  }
+]
+
+dynamic_batching {
+}

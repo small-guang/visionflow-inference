@@ -1,0 +1,28 @@
+name: "sbs_r50_ibn_onnx"
+backend: "tensorrt"
+max_batch_size: 4
+
+input {
+  name: "image"
+  data_type: TYPE_FP32
+  dims: [3, 384, 128]
+}
+
+output {
+  name: "embedding"
+  data_type: TYPE_FP32
+  dims: [2048]
+}
+
+instance_group {
+  name: "sbs_r50_ibn_onnx"
+  kind: KIND_GPU
+  count: 1
+  gpus: [0]
+}
+
+default_model_filename: "model_throughput.plan"
+
+dynamic_batching {
+  max_queue_delay_microseconds: 2000
+}

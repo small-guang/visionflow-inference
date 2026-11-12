@@ -1,0 +1,46 @@
+ARG TRITON_BASE_IMAGE=registry.cn-hangzhou.aliyuncs.com/eapil/tritonserver:26.04-py3-arm64
+FROM ${TRITON_BASE_IMAGE}
+
+ENV TRITON_MODEL_CONFIG=orin_gpu
+
+# The default 26.04 ARM64 runtime uses CUDA 13. Override for CUDA 12 images.
+ARG CUPY_PACKAGE=cupy-cuda13x==13.6.0
+# Match the TensorRT C++ libraries already installed in the ARM64 base image.
+# Override both packages for another TensorRT/CUDA version; keep --no-deps.
+ARG TENSORRT_PYTHON_PACKAGE=tensorrt-cu13==10.16.1.11
+ARG TENSORRT_BINDINGS_PACKAGE=tensorrt-cu13-bindings==10.16.1.11
+ARG TENSORRT_PYPI_INDEX=https://repo.huaweicloud.com/repository/pypi/simple
+
+RUN python3 -m pip install --no-cache-dir \
+    -i https://repo.huaweicloud.com/repository/pypi/simple \
+    regex \
+    ftfy \
+    pillow \
+    numpy==1.26.4 \
+    opencv-python-headless==4.10.0.84 \
+    scikit-image==0.25.2 \
+    ${CUPY_PACKAGE}
+
+RUN python3 -m pip install --no-cache-dir --no-deps \
+    --index-url ${TENSORRT_PYPI_INDEX} \
+    ${TENSORRT_BINDINGS_PACKAGE} ${TENSORRT_PYTHON_PACKAGE} \
+    && python3 -c "import tensorrt as trt; assert hasattr(trt.Runtime, 'deserialize_cuda_engine'); assert hasattr(trt.IExecutionContext, 'execute_async_v3')"
+
+COPY scripts/run_triton_with_rotating_logs.py /usr/local/bin/run_triton_with_rotating_logs.py
+COPY scripts/start_triton.py /usr/local/bin/start_triton.py
+COPY scripts/yolo_orin_pipeline.py /usr/local/bin/yolo_orin_pipeline.py
+COPY scripts/yolo_request_batching.py /usr/local/bin/yolo_request_batching.py
+COPY scripts/yolo_orin_metrics.py /usr/local/bin/yolo_orin_metrics.py
+COPY scripts/tbps_orin_pipeline.py /usr/local/bin/tbps_orin_pipeline.py
+COPY scripts/image_orin_preprocess.py /usr/local/bin/image_orin_preprocess.py
+COPY scripts/face_orin_preprocess.py /usr/local/bin/face_orin_preprocess.py
+COPY scripts/orin_trt_runtime.py /usr/local/bin/orin_trt_runtime.py
+COPY scripts/orin_pipeline_metrics.py /usr/local/bin/orin_pipeline_metrics.py
+COPY scripts/image_decode.py /usr/local/bin/image_decode.py
+COPY scripts/image_orin_pipeline.py /usr/local/bin/image_orin_pipeline.py
+COPY scripts/face_orin_pipeline.py /usr/local/bin/face_orin_pipeline.py
+COPY profiles/model_sets.json /opt/triton/model_sets.json
+
+RUN chmod +x /usr/local/bin/run_triton_with_rotating_logs.py \
+    /usr/local/bin/start_triton.py \
+    && mkdir -p /var/log/triton

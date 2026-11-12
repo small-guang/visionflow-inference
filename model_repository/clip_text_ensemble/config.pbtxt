@@ -1,0 +1,48 @@
+name: "clip_text_ensemble"
+platform: "ensemble"
+max_batch_size: 4
+
+input [
+  {
+    name: "TEXT"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+
+output [
+  {
+    name: "unnorm_text_features"
+    data_type: TYPE_FP32
+    dims: [ 512 ]
+  }
+]
+
+ensemble_scheduling {
+  step [
+    {
+      model_name: "clip_text_preprocess"
+      model_version: -1
+      input_map {
+        key: "TEXT"
+        value: "TEXT"
+      }
+      output_map {
+        key: "INPUT_IDS"
+        value: "preprocessed_ids"
+      }
+    },
+    {
+      model_name: "clip_text_trt"
+      model_version: -1
+      input_map {
+        key: "text"
+        value: "preprocessed_ids"
+      }
+      output_map {
+        key: "unnorm_text_features"
+        value: "unnorm_text_features"
+      }
+    }
+  ]
+}

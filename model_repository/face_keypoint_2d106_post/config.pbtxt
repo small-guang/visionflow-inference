@@ -1,0 +1,30 @@
+name: "face_keypoint_2d106_post"
+backend: "python"
+max_batch_size: 4
+input [
+  {
+    name: "RAW_OUTPUT"
+    data_type: TYPE_FP32
+    dims: [ 212 ]
+  },
+  {
+    name: "AFFINE_MATRIX"
+    data_type: TYPE_FP64
+    dims: [ 2, 3 ]
+  }
+]
+output [
+  {
+    name: "LANDMARKS_106"
+    data_type: TYPE_FP32
+    dims: [ 106, 2 ]
+  }
+]
+instance_group [
+  {
+    count: 1
+  }
+]
+
+dynamic_batching {
+}

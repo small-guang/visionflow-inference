@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "aliases": [
+    "clip_image",
+    "clip_text",
+    "face_keypoint_2d106",
+    "face_qa",
+    "face_recognition",
+    "sbs",
+    "tbps_clip_image",
+    "tbps_clip_text",
+    "yolo26m_pose",
+    "yolo26s_seg",
+    "yolov8n_face"
+  ]
+}

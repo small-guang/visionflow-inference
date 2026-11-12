@@ -1,0 +1,50 @@
+name: "TBPS_clip_text_ensemble"
+platform: "ensemble"
+max_batch_size: 4
+
+input [
+  {
+    name: "TEXT_IN"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+
+output [
+  {
+    # text_feat is L2-normalized by the exported TBPS text encoder
+    # (features / ||features||). It can be used with IP search as cosine similarity.
+    name: "text_feat"
+    data_type: TYPE_FP32
+    dims: [ 512 ]
+  }
+]
+
+ensemble_scheduling {
+  step [
+    {
+      model_name: "TBPS_clip_text_preprocess"
+      model_version: -1
+      input_map {
+        key: "TEXT_IN"
+        value: "TEXT_IN"
+      }
+      output_map {
+        key: "TEXT_TOKENS"
+        value: "preprocessed_ids"
+      }
+    },
+    {
+      model_name: "TBPS_clip_text_trt"
+      model_version: -1
+      input_map {
+        key: "text"
+        value: "preprocessed_ids"
+      }
+      output_map {
+        key: "text_feat"
+        value: "text_feat"
+      }
+    }
+  ]
+}

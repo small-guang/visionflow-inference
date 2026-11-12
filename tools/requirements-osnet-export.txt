@@ -1,0 +1,6 @@
+# Install matching platform-specific PyTorch separately.
+numpy==2.5.0
+onnx==1.22.0
+onnxruntime==1.28.0
+pillow==12.2.0
+

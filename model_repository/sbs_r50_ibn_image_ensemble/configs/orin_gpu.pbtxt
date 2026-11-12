@@ -1,0 +1,11 @@
+name: "sbs_r50_ibn_image_ensemble"
+backend: "python"
+max_batch_size: 4
+parameters { key: "api_contract_version" value { string_value: "2" } }
+parameters { key: "pipeline_backend" value { string_value: "orin_gpu" } }
+parameters { key: "jpeg_decode_workers" value { string_value: "2" } }
+parameters { key: "FORCE_CPU_ONLY_INPUT_TENSORS" value { string_value: "yes" } }
+input [ { name: "IMAGE_BYTES" data_type: TYPE_STRING dims: [1] } ]
+output [ { name: "embedding" data_type: TYPE_FP32 dims: [2048] } ]
+instance_group [ { count: 2 kind: KIND_GPU } ]
+dynamic_batching { preferred_batch_size: [4] max_queue_delay_microseconds: 500 }

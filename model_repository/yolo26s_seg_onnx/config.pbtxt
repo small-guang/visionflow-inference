@@ -1,0 +1,35 @@
+name: "yolo26s_seg_onnx"
+backend: "tensorrt"
+default_model_filename: "model_throughput.plan"
+max_batch_size: 4
+# Native FP16 engine with the existing FP32 tensor contract.
+
+input [
+  {
+    name: "images"
+    data_type: TYPE_FP32
+    dims: [ 3, -1, -1 ]
+  }
+]
+output [
+  {
+    name: "output0"
+    data_type: TYPE_FP32
+    dims: [ -1, 38 ]
+  },
+  {
+    name: "output1"
+    data_type: TYPE_FP32
+    dims: [ 32, -1, -1 ]
+  }
+]
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]
+
+dynamic_batching {
+  max_queue_delay_microseconds: 2000
+}

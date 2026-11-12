@@ -1,0 +1,10 @@
+# Orin: CPU OpenCV decode, CUDA cubic + BGR/RGB + normalization + NCHW.
+name: "clip_image_preprocess"
+backend: "python"
+max_batch_size: 4
+parameters { key: "preprocess_backend" value { string_value: "orin_gpu" } }
+parameters { key: "FORCE_CPU_ONLY_INPUT_TENSORS" value { string_value: "yes" } }
+input [ { name: "IMAGE_BYTES" data_type: TYPE_STRING dims: [1] } ]
+output [ { name: "image" data_type: TYPE_FP32 dims: [3, 224, 224] } ]
+instance_group [ { kind: KIND_GPU count: 2 } ]
+dynamic_batching {}

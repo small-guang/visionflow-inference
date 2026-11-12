@@ -1,0 +1,26 @@
+name: "TBPS_clip_text_preprocess"
+backend: "python"
+max_batch_size: 4
+input [
+  {
+    name: "TEXT_IN"
+    data_type: TYPE_STRING
+    dims: [ 1 ]
+  }
+]
+output [
+  {
+    name: "TEXT_TOKENS"
+    data_type: TYPE_INT64
+    dims: [ 77 ] #
+  }
+]
+instance_group [
+  {
+    count: 1
+    kind: KIND_CPU
+  }
+]
+
+dynamic_batching {
+}

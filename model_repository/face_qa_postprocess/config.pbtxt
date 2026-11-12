@@ -1,0 +1,24 @@
+name: "face_qa_postprocess"
+backend: "python"
+max_batch_size: 4
+input [
+  {
+    name: "quality"
+    data_type: TYPE_FP32
+    dims: [ 10 ]
+  }
+]
+output [
+  {
+    name: "quality_score"
+    data_type: TYPE_FP32
+    dims: [ 1 ]
+  }
+]
+
+instance_group {
+  count: 1
+}
+
+dynamic_batching {
+}

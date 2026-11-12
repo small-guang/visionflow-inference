@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "model_sets": {
+    "adaface": {
+      "entry_point": "adaface_recognition_pipeline",
+      "models": ["adaface_preprocess", "adaface_ir50_webface4m_onnx", "adaface_recognition_pipeline"]
+    },
+    "clip_image": {
+      "entry_point": "clip_ensemble_trt",
+      "models": ["clip_image_preprocess", "clip_image_trt", "clip_ensemble_trt"]
+    },
+    "clip_text": {
+      "entry_point": "clip_text_ensemble",
+      "models": ["clip_text_preprocess", "clip_text_trt", "clip_text_ensemble"]
+    },
+    "face_keypoint_2d106": {
+      "entry_point": "face_keypoint_2d106_ensemble",
+      "models": ["face_keypoint_2d106_pre", "face_keypoint_2d106", "face_keypoint_2d106_post", "face_keypoint_2d106_ensemble"]
+    },
+    "face_qa": {
+      "entry_point": "face_qa_ensemble",
+      "models": ["face_qa_pre", "face_qa", "face_qa_postprocess", "face_qa_ensemble"]
+    },
+    "face_recognition": {
+      "entry_point": "face_recognition_pipeline",
+      "models": ["face_rec_pre", "w600k_r50_trt", "face_recognition_pipeline"]
+    },
+    "osnet": {
+      "entry_point": "osnet_ain_x1_0_image_ensemble",
+      "models": ["osnet_ain_x1_0_image_preprocess", "osnet_ain_x1_0_onnx", "osnet_ain_x1_0_image_ensemble"]
+    },
+    "sbs": {
+      "entry_point": "sbs_r50_ibn_image_ensemble",
+      "models": ["sbs_r50_ibn_image_preprocess", "sbs_r50_ibn_onnx", "sbs_r50_ibn_image_ensemble"]
+    },
+    "sixdrepnet": {
+      "entry_point": "sixdrepnet_ensemble",
+      "models": ["sixdrepnet_preprocess", "sixdrepnet_onnx", "sixdrepnet_postprocess", "sixdrepnet_ensemble"]
+    },
+    "tbps_clip_image": {
+      "entry_point": "TBPS_clip_image_ensemble",
+      "models": ["TBPS_clip_image_preprocess", "TBPS_clip_image_trt", "TBPS_clip_image_ensemble"]
+    },
+    "tbps_clip_text": {
+      "entry_point": "TBPS_clip_text_ensemble",
+      "models": ["TBPS_clip_text_preprocess", "TBPS_clip_text_trt", "TBPS_clip_text_ensemble"]
+    },
+    "yolo26m_pose": {
+      "entry_point": "yolo26m_pose_ensemble",
+      "models": ["yolo26m_pose_preprocess", "yolo26m_pose_onnx", "yolo26m_pose_postprocess", "yolo26m_pose_ensemble"]
+    },
+    "yolo26s_seg": {
+      "entry_point": "yolo26s_seg_ensemble",
+      "models": ["yolo26s_seg_preprocess", "yolo26s_seg_onnx", "yolo26s_seg_postprocess", "yolo26s_seg_ensemble"]
+    },
+    "yolov8n_face": {
+      "entry_point": "yolov8n_face_ensemble",
+      "models": ["yolov8n_face_preprocess", "yolov8n_face_onnx", "yolov8n_face_postprocess", "yolov8n_face_ensemble"]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+name: "face_qa"
+backend: "tensorrt"
+max_batch_size: 4
+input [
+  {
+    name: "input"
+    data_type: TYPE_FP32
+    dims: [ 3, 112, 112 ]
+  }
+]
+output [
+  {
+    name: "quality"
+    data_type: TYPE_FP32
+    dims: [ 10 ]
+  }
+]
+instance_group [
+  {
+    count: 1
+    kind: KIND_GPU
+  }
+]
+default_model_filename: "model_throughput.plan"
+
+dynamic_batching {
+  max_queue_delay_microseconds: 2000
+}

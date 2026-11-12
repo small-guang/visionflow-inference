@@ -1,0 +1,28 @@
+name: "clip_text_trt"
+backend: "tensorrt"
+max_batch_size: 4
+
+input {
+  name: "text"
+  data_type: TYPE_INT64
+  dims: [52]
+}
+
+output {
+  name: "unnorm_text_features"
+  data_type: TYPE_FP32
+  dims: [512]
+}
+
+instance_group {
+  name: "clip_text_trt"
+  kind: KIND_GPU
+  count: 1
+  gpus: [0]
+}
+
+default_model_filename: "model_throughput.plan"
+
+dynamic_batching {
+  max_queue_delay_microseconds: 2000
+}

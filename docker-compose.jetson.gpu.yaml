@@ -1,0 +1,5 @@
+# Explicit Orin GPU profile (also the base default): docker compose -f docker-compose.jetson.yaml -f docker-compose.jetson.gpu.yaml up -d --build
+services:
+  triton-server:
+    environment:
+      TRITON_MODEL_CONFIG: orin_gpu
