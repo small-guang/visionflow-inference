@@ -1,2 +1,8 @@
 .gitattributes text eol=lf
 tools/model_pipeline/catalog.json text eol=lf
+gpu_demo/** text eol=lf
+gpu_demo/licenses/** -text whitespace=cr-at-eol
+gpu_demo/gpu-validation.json -text whitespace=cr-at-eol
+gpu_demo/identity-model-manifest.json -text whitespace=cr-at-eol
+*.onnx -text
+*.plan -text

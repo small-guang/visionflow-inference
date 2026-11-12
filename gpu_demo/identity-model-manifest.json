@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "prepared_at_utc": "2026-11-12T09:34:04.456523+00:00",
+  "gpu_verified": false,
+  "runtime": "Triton native ONNX Runtime CUDA EP; pose native TensorRT",
+  "placement": "KIND_GPU, GPU device0; validate loaded providers and actual requests on target",
+  "cpu_fallback_claim": "No claim of disabled ORT operator fallback; stock24.12 has no generic session.disable_cpu_ep_fallback parameter",
+  "models": {
+    "yunet_gpu": {
+      "source_repository": "https://github.com/opencv/opencv_zoo",
+      "source_revision": "48b10fa505aeb51fbd127fc60a5c660040e823b7",
+      "source_path": "models/face_detection_yunet/face_detection_yunet_2023mar.onnx",
+      "source_sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "weights_license": "MIT",
+      "license_sha256": "c83b8120c50ccbd4c4f96edf53141bdd566ebb8f8e9227e415326aa1b1aba958",
+      "license_scope_url": "https://github.com/opencv/opencv_zoo/blob/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/face_detection_yunet/README.md#license",
+      "contract": {
+        "inputs": [
+          {
+            "name": "input",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              3,
+              640,
+              640
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "name": "cls_8",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              6400,
+              1
+            ]
+          },
+          {
+            "name": "cls_16",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              1600,
+              1
+            ]
+          },
+          {
+            "name": "cls_32",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              400,
+              1
+            ]
+          },
+          {
+            "name": "obj_8",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              6400,
+              1
+            ]
+          },
+          {
+            "name": "obj_16",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              1600,
+              1
+            ]
+          },
+          {
+            "name": "obj_32",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              400,
+              1
+            ]
+          },
+          {
+            "name": "bbox_8",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              6400,
+              4
+            ]
+          },
+          {
+            "name": "bbox_16",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              1600,
+              4
+            ]
+          },
+          {
+            "name": "bbox_32",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              400,
+              4
+            ]
+          },
+          {
+            "name": "kps_8",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              6400,
+              10
+            ]
+          },
+          {
+            "name": "kps_16",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              1600,
+              10
+            ]
+          },
+          {
+            "name": "kps_32",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              400,
+              10
+            ]
+          }
+        ],
+        "metadata": {}
+      },
+      "operators": {
+        "Conv": 53,
+        "Relu": 15,
+        "MaxPool": 4,
+        "Resize": 2,
+        "Add": 2,
+        "Transpose": 12,
+        "Reshape": 12,
+        "Sigmoid": 6
+      },
+      "input_semantics": "BGR NCHW float32 raw 0..255; fixed 640x640; caller restores resize/padding coordinates",
+      "output_semantics": null
+    },
+    "sface_gpu": {
+      "source_repository": "https://github.com/opencv/opencv_zoo",
+      "source_revision": "48b10fa505aeb51fbd127fc60a5c660040e823b7",
+      "source_path": "models/face_recognition_sface/face_recognition_sface_2021dec.onnx",
+      "source_sha256": "0ba9fbfa01b5270c96627c4ef784da859931e02f04419c829e83484087c34e79",
+      "weights_license": "Apache-2.0",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "license_scope_url": "https://github.com/opencv/opencv_zoo/blob/48b10fa505aeb51fbd127fc60a5c660040e823b7/models/face_recognition_sface/README.md#license",
+      "contract": {
+        "inputs": [
+          {
+            "name": "data",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              3,
+              112,
+              112
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "name": "fc1",
+            "dtype": "FP32",
+            "shape": [
+              1,
+              128
+            ]
+          }
+        ],
+        "metadata": {}
+      },
+      "operators": {
+        "Sub": 1,
+        "Mul": 1,
+        "Conv": 27,
+        "BatchNormalization": 29,
+        "PRelu": 27,
+        "Dropout": 1,
+        "Flatten": 1,
+        "Gemm": 1
+      },
+      "input_semantics": "Align BGR face with five landmarks to112x112, then swap BGR to RGB, NCHW float32 raw0..255; graph includes normalization",
+      "output_semantics": "128-dimensional face embedding; L2-normalize before cosine matching; separate from OSNet body embedding space"
+    },
+    "yolo26m_pose_onnx": {
+      "source_model": "ultralytics_yolo26m_pose",
+      "source_urls": [
+        "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26m-pose.pt"
+      ],
+      "source_checkpoint_sha256": "2fbf16367022256a226035695c5c389384c6706e8bb8ab8fcd0e7976f05443c4",
+      "onnx_sha256": "499c4fec75e3112dc5a548a71756950e6c06810bc08c343bc80a0f3e71d63ee2",
+      "plan_sha256": "955294679779502dbd8598f627b05f4041d804f95b393d71f1f5205f3ed36238",
+      "onnx_validation": "onnx.checker full_check plus graph contract/embedded license",
+      "weights_license": "AGPL-3.0",
+      "upstream_code_license": "AGPL-3.0",
+      "project_pipeline_code_license": "Apache-2.0",
+      "contract": {
+        "inputs": [
+          {
+            "name": "images",
+            "dtype": "FP32",
+            "shape": [
+              "batch",
+              3,
+              "height",
+              "width"
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "name": "output0",
+            "dtype": "FP32",
+            "shape": [
+              "batch",
+              "detections",
+              57
+            ]
+          }
+        ],
+        "metadata": {
+          "author": "Ultralytics",
+          "version": "8.4.61",
+          "license": "AGPL-3.0 License (https://ultralytics.com/license)",
+          "stride": "32",
+          "task": "pose",
+          "names": "{0: 'person'}",
+          "end2end": "True",
+          "kpt_shape": "[17, 3]"
+        }
+      }
+    },
+    "osnet_gpu": {
+      "onnx_sha256": "e766a2c3bdc0200ce20b9be0a05c784d4d81f342c3db40d8e054980b87d47c08",
+      "weights_license": "MIT",
+      "source_checkpoint_sha256": "8a07e8da38946f7cee37f4561617bf8b6d2fe8f3a4027852893ea092e46d919f",
+      "source_revision": "01af85e82a9db4f3a4f6ed3a72ed9150bd416d04",
+      "license_evidence": "licenses/osnet/evidence.json",
+      "contract": {
+        "inputs": [
+          {
+            "name": "image",
+            "dtype": "FP32",
+            "shape": [
+              "batch",
+              3,
+              256,
+              128
+            ]
+          }
+        ],
+        "outputs": [
+          {
+            "name": "embedding",
+            "dtype": "FP32",
+            "shape": [
+              "batch",
+              512
+            ]
+          }
+        ],
+        "metadata": {}
+      },
+      "embedding_space": "osnet-ain-msmt17-256x128-512-l2",
+      "training_data": "MSMT17; separate terms; not bundled"
+    }
+  },
+  "files": {
+    "yunet_gpu/1/model.onnx": {
+      "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "size": 232589
+    },
+    "yunet_gpu/config.pbtxt": {
+      "sha256": "73e13cfaf273c535b378917d80613c9871ca755d858f0cb177e3bd7128dea3f8",
+      "size": 977
+    },
+    "sface_gpu/1/model.onnx": {
+      "sha256": "0ba9fbfa01b5270c96627c4ef784da859931e02f04419c829e83484087c34e79",
+      "size": 38696353
+    },
+    "sface_gpu/config.pbtxt": {
+      "sha256": "dccf45f358ffb7d7ca464fc1915c3172f2bea49ab0e463c1bc6054388a159af8",
+      "size": 289
+    },
+    "yolo26m_pose_onnx/1/model.onnx": {
+      "sha256": "499c4fec75e3112dc5a548a71756950e6c06810bc08c343bc80a0f3e71d63ee2",
+      "size": 86288827
+    },
+    "yolo26m_pose_onnx/1/model_throughput.plan": {
+      "sha256": "955294679779502dbd8598f627b05f4041d804f95b393d71f1f5205f3ed36238",
+      "size": 48933260
+    },
+    "yolo26m_pose_preprocess/config.pbtxt": {
+      "sha256": "acd912e5ea078fd3c85018d0782c369baa799d46a5ecd53a4d5edec7c13cb82f",
+      "size": 446
+    },
+    "yolo26m_pose_preprocess/1/gpu.py": {
+      "sha256": "cc18458507187bf3662da3d04c85027d28a484f9923be3fc9e2a93f1c0aedafa",
+      "size": 6632
+    },
+    "yolo26m_pose_preprocess/1/model.py": {
+      "sha256": "b7ffe65c9de2c3cdffbab4697f9951589290608aabd6ccd4ec785c2eb1de7b8f",
+      "size": 9013
+    },
+    "yolo26m_pose_onnx/config.pbtxt": {
+      "sha256": "8ca42207961b73e116849bc0d50cc90ab478648d44ba178738ba38462b9a7f00",
+      "size": 493
+    },
+    "yolo26m_pose_postprocess/config.pbtxt": {
+      "sha256": "3da7cdd5390e41ebfd21ddefa5effe7c97c8210597bb86b636c61187f28eebe6",
+      "size": 602
+    },
+    "yolo26m_pose_postprocess/1/gpu.py": {
+      "sha256": "8f565b46bdf64f16a1dcae5c9387897947cb3304d7dd2dfe1af374ea795570f5",
+      "size": 9199
+    },
+    "yolo26m_pose_postprocess/1/model.py": {
+      "sha256": "465df05c994415cf1b0611d6ee14c8bd7c41b01c59e1e0c82942317e50dc7828",
+      "size": 15574
+    },
+    "yolo26m_pose_ensemble/config.pbtxt": {
+      "sha256": "3c471a602f68311371cf221019c394633dcdb08acdb91b779b75046bd1b62eaf",
+      "size": 1559
+    },
+    "yolo26m_pose_ensemble/1/model.py": {
+      "sha256": "bcd1510d7f7bf31878b66130529417d90e46e1509c095f88f4a7bda8a09f9c8c",
+      "size": 272
+    },
+    "osnet_gpu/1/model.onnx": {
+      "sha256": "e766a2c3bdc0200ce20b9be0a05c784d4d81f342c3db40d8e054980b87d47c08",
+      "size": 8752792
+    },
+    "osnet_gpu/config.pbtxt": {
+      "sha256": "2f862f799af6f0ef8a846dc8a6adf1cb94c1804e464e37be81d290eb2a583f26",
+      "size": 336
+    }
+  },
+  "scope": "Preparation and graph checks only; not inference accuracy or identity proof",
+  "toolchain": {
+    "python": "3.13.13",
+    "onnx": "1.22.0"
+  }
+}

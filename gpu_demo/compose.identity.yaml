@@ -1,0 +1,33 @@
+name: vf-open-gpu-identity
+services:
+  triton-gpu-identity:
+    image: ${TRITON_GPU_IMAGE:-nvcr.io/nvidia/tritonserver:24.12-py3}
+    command:
+      - tritonserver
+      - --model-repository=/models
+      - --model-control-mode=explicit
+      - --load-model=yolo26m_pose_preprocess
+      - --load-model=yolo26m_pose_onnx
+      - --load-model=yolo26m_pose_postprocess
+      - --load-model=yolo26m_pose_ensemble
+      - --load-model=yunet_gpu
+      - --load-model=sface_gpu
+      - --load-model=osnet_gpu
+      - --strict-readiness=true
+      - --exit-on-error=true
+      - --log-verbose=1
+    ports:
+      - 127.0.0.1:18010:8000
+      - 127.0.0.1:18011:8001
+      - 127.0.0.1:18012:8002
+    volumes:
+      - ./identity_model_repository:/models:ro
+    shm_size: 1gb
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
+    restart: "no"

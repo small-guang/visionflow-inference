@@ -1,0 +1,2 @@
+-r requirements.txt
+tritonclient[grpc]==2.71.0

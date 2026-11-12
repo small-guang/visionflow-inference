@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "validation_scope": "Actual isolated GPU replay on this target; not a cross-hardware guarantee or universal accuracy assessment",
+  "run_id": "gpu-20261112-175719-f27110",
+  "server_device": {
+    "gpu": "NVIDIA GeForce RTX 3090, 24576 MiB, 610.60",
+    "image_id": "sha256:9f9e163bdb742bf81162d2c10bc66a580c60bf45e0902ccbae79690b0c7ea486",
+    "evidence": "Read-only nvidia-smi executed inside the same isolated Triton container"
+  },
+  "source_sha256": "1355e8e6a5f3d37c5b0fbbeda47a424f8ec1cd8bae7f076dc334f7a529139bb3",
+  "video_frames": 225,
+  "native_pose_inferences": 225,
+  "identity_inferences": {
+    "yunet_gpu": 225,
+    "sface_gpu": 225,
+    "osnet_gpu": 229
+  },
+  "gallery_size": 2,
+  "source_model_manifest_sha256": "4ed0d9f0c0ec2236dbdcd27f00dfe461fc4385c5b685667b7714c89d11ef9697",
+  "media_receipt_sha256": "904fd334a9bf988085d4d019c7f6eab69f7c6a741deef9b0e937f8ad511ec145",
+  "result": "A -> Demo-P001; B -> Demo-P002; A returns -> Demo-P001. Four additional faceless detections remain unconfirmed body candidates.",
+  "evidence_location": "Companion VisionFlow repository: demo/gpu/identity-run-output/manifest.json and events.jsonl"
+}

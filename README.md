@@ -18,9 +18,13 @@ VisionFlow Inference 是 VisionFlow 的模型推理服务，使用 Triton Infere
 
 模型名、输入输出类型及维度以 [模型接口与运维](docs/模型接口与运维.md) 为准。`yolov8n_face`、`yolo26s_seg` 是兼容别名，实际模型大小见[来源清单](docs/模型来源与制品身份.md#来源清单)。
 
-## CPU 快速演示
+## 已落地：GPU 作品展示
 
-仓库中的 `cpu_demo/` 提供独立的 OpenCV 人脸检测 HTTP 服务，不需要 GPU 或下载额外模型。运行 `docker compose -f cpu_demo/compose.yaml up --build`，再使用 VisionFlow 仓库 `demo/` 中的客户端生成标注图与 JSON。该演示不实现 Triton V2 协议，不能作为生产 Worker 的推理后端；其检测效果和生产模型也不可直接比较。仅监听本机端口，未提供认证或 TLS。
+[GPU 身份演示入口](gpu_demo/README.md)使用独立 Triton GPU Compose，加载 YOLO26m Pose、YuNet、SFace 和 OSNet。模型与许可均有固定来源和摘要，不要求许可未核实的其他身份模型。
+
+本机 RTX3090 已验证15秒真实视频：225个输出帧，A→B→A分别确认为Demo-P001→Demo-P002→Demo-P001；无脸人形仅为候选。主仓 `VisionFlow/demo/gpu/` 保留最终视频、逐帧身份证据、登记图库与流程示意。
+
+前后处理和身份决策运行在主机，神经网络使用GPU实例。NVIDIA运行库按自身条款使用，不宣称全栈开源。两个仓库同级下载后按演示入口复现；原根Compose与模型集合保留给完整多模型环境。
 
 ## 运行前必读
 

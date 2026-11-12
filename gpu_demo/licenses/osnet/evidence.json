@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-12T09:29:10.254648+00:00",
+  "publisher": "Kaiyang Zhou / official OSNet model repository linked by deep-person-reid",
+  "weight_repository": "kaiyangzhou/osnet",
+  "weight_revision": "01af85e82a9db4f3a4f6ed3a72ed9150bd416d04",
+  "weights_license": "MIT",
+  "license_evidence": "The pinned author model card declares license: mit and explicitly describes this repository as pretrained OSNet person re-identification weights. This is weight-repository evidence, not an inference from code licensing.",
+  "source_checkpoint": {
+    "filename": "osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth",
+    "sha256": "8a07e8da38946f7cee37f4561617bf8b6d2fe8f3a4027852893ea092e46d919f",
+    "bytes": 17293009
+  },
+  "exported_onnx": {
+    "sha256": "e766a2c3bdc0200ce20b9be0a05c784d4d81f342c3db40d8e054980b87d47c08",
+    "bytes": 8752792,
+    "input": "image FP32 [B,3,256,128]",
+    "output": "embedding FP32 [B,512], L2-normalized by export wrapper",
+    "preprocessing": "Pillow decode RGB; bilinear resize to width128/height256; divide255; ImageNet mean[0.485,0.456,0.406], std[0.229,0.224,0.225]; CHW"
+  },
+  "architecture_revision": "f8cd150fdf77e8d9e1ed143b7f308c2c609ded50",
+  "upstream_weight_link_evidence": "https://github.com/KaiyangZhou/deep-person-reid/blob/f8cd150fdf77e8d9e1ed143b7f308c2c609ded50/README.rst#L33",
+  "boundaries": [
+    "Preserve upstream MIT copyright and permission notice and this model card when redistributing.",
+    "The Apache-2.0 project license does not replace the model MIT license.",
+    "MSMT17 training data are not bundled or relicensed by this evidence; no fully open training-data or commercial-deployment guarantee is asserted.",
+    "Person ReID similarity is a candidate signal; identity confirmation and face-anchor rules remain separate."
+  ],
+  "files": [
+    {
+      "file": "model-card.md",
+      "source_url": "https://huggingface.co/kaiyangzhou/osnet/raw/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04/README.md",
+      "sha256": "ac2d0616ec8948543d3fb83a6e77322ad53566e172c22f4f24fe3afad2fb46f9",
+      "bytes": 1606
+    },
+    {
+      "file": "model-api.json",
+      "source_url": "https://huggingface.co/api/models/kaiyangzhou/osnet/revision/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04",
+      "sha256": "7c43c01a5e2d7c0d83384865b17022ddf170377b85709d2e3bbbbaad8a6ed698",
+      "bytes": 1828
+    },
+    {
+      "file": "LICENSE-MIT.txt",
+      "source_url": "https://raw.githubusercontent.com/KaiyangZhou/deep-person-reid/f8cd150fdf77e8d9e1ed143b7f308c2c609ded50/LICENSE",
+      "sha256": "3ac8ce2a83d170cb1c7c84152e0c1faca1f187794303514383960d2441716247",
+      "bytes": 1069
+    },
+    {
+      "file": "checkpoint-lfs-pointer.txt",
+      "source_url": "https://huggingface.co/kaiyangzhou/osnet/raw/01af85e82a9db4f3a4f6ed3a72ed9150bd416d04/osnet_ain_x1_0_msmt17_256x128_amsgrad_ep50_lr0.0015_coslr_b64_fb10_softmax_labsmth_flip_jitter.pth",
+      "sha256": "d4b49022e871e8a23be8c9573118860a3b50cb34e8d2dfcdf6c2dd93cbaffd0a",
+      "bytes": 133
+    }
+  ]
+}
