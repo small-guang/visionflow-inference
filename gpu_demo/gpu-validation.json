@@ -17,7 +17,7 @@
   },
   "gallery_size": 2,
   "source_model_manifest_sha256": "4ed0d9f0c0ec2236dbdcd27f00dfe461fc4385c5b685667b7714c89d11ef9697",
-  "media_receipt_sha256": "904fd334a9bf988085d4d019c7f6eab69f7c6a741deef9b0e937f8ad511ec145",
+  "media_receipt_sha256": "0466d5967b0be0263fa13bef0bae634b5d50cad625e17db21d62d16244e83390",
   "result": "A -> Demo-P001; B -> Demo-P002; A returns -> Demo-P001. Four additional faceless detections remain unconfirmed body candidates.",
   "evidence_location": "Companion VisionFlow repository: demo/gpu/identity-run-output/manifest.json and events.jsonl"
 }
